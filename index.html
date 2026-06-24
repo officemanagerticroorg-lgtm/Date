@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свидание</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-card">
+        <!-- Screen 1: Question -->
+        <div id="screen-1" class="screen active">
+            <img src="assets/cat.png" alt="Cute Cat" class="hero-image">
+            <h2>Ты пойдешь со мной на свидание?</h2>
+            <div class="buttons">
+                <button id="btn-yes" class="btn primary">Да</button>
+                <button id="btn-no" class="btn secondary">Нет</button>
+            </div>
+        </div>
+
+        <!-- Screen 2: Surprise -->
+        <div id="screen-2" class="screen">
+            <img src="assets/cat.png" alt="Cute Cat" class="hero-image">
+            <h2>Подожди, ты действительно сказала да?</h2>
+            <p>Я был готов что скажешь "нет" хихи</p>
+            <button id="btn-confirm-yes" class="btn primary">Да Да дА</button>
+        </div>
+
+        <!-- Screen 3: Date & Time -->
+        <div id="screen-3" class="screen">
+            <h2>И так... Когда ты свободна?</h2>
+            <div class="datetime-inputs">
+                <div class="input-group">
+                    <label>Дата</label>
+                    <input type="date" id="date-input">
+                </div>
+                <div class="input-group">
+                    <label>Время</label>
+                    <input type="time" id="time-input">
+                </div>
+            </div>
+            <button id="btn-submit-datetime" class="btn primary">Выбери дату ❤️</button>
+        </div>
+
+        <!-- Screen 4: Food Selection -->
+        <div id="screen-4" class="screen">
+            <h2>Что ты хочешь?</h2>
+            <p>Выбери что тебе в кайф или напиши свой вариант</p>
+            <div class="food-grid">
+                <button class="food-btn" data-food="Пицца">🍕 Пицца</button>
+                <button class="food-btn" data-food="Суши">🍣 Суши</button>
+                <button class="food-btn" data-food="Бургер">🍔 Бургер</button>
+                <button class="food-btn" data-food="Паста">🍝 Паста</button>
+                <button class="food-btn" data-food="Шаурма" style="grid-column: span 2;">🌯 ШАУРМА 🌯</button>
+            </div>
+            <div class="custom-food-input">
+                <input type="text" id="custom-food" placeholder="Свой вариант...">
+                <button id="btn-submit-custom-food" class="btn primary">Готово</button>
+            </div>
+        </div>
+
+        <!-- Screen 5: Final -->
+        <div id="screen-5" class="screen">
+            <img src="assets/shawarma.png" id="final-food-img" alt="Food" class="hero-image">
+            <h2 id="final-title">Рад что не отказалась.</h2>
+            <p id="final-text">Будь готова к [Дата], я приеду за тобой</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
