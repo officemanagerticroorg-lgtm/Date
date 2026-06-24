@@ -226,3 +226,68 @@ p {
 .custom-food-input input:focus {
     border-color: #ff4b72;
 }
+
+/* Адаптация под мобильные устройства (телефоны) */
+@media (max-width: 480px) {
+    .glass-card {
+        padding: 25px 15px;
+        width: 92%;
+        border-radius: 16px;
+        min-height: 350px;
+    }
+    
+    .hero-image {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 15px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+    
+    p {
+        font-size: 14px;
+    }
+    
+    #btn-yes {
+        margin-right: 90px;
+    }
+    
+    .btn.secondary {
+        left: 50%;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+    
+    .food-btn {
+        padding: 12px 5px;
+        font-size: 14px;
+    }
+    
+    .food-btn[data-food="Шаурма"] {
+        font-size: 18px;
+        padding: 15px;
+    }
+    
+    .datetime-inputs {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .custom-food-input {
+        flex-direction: column;
+    }
+    
+    .custom-food-input input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .custom-food-input button {
+        width: 100%;
+    }
+}
