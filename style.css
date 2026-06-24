@@ -162,6 +162,22 @@ p {
     border-color: #ff4b72;
 }
 
+.datetime-preview {
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 10px 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    display: none;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
 .food-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;

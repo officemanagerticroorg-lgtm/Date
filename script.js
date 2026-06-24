@@ -44,16 +44,76 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnSubmitDatetime = document.getElementById('btn-submit-datetime');
     const dateInput = document.getElementById('date-input');
     const timeInput = document.getElementById('time-input');
+    const datetimePreview = document.getElementById('datetime-preview');
 
     const today = new Date().toISOString().split('T')[0];
     dateInput.min = today;
     dateInput.value = today;
     timeInput.value = '19:00';
 
+    function updateDateTimePreview() {
+        const dateVal = dateInput.value;
+        const timeVal = timeInput.value;
+
+        if (!dateVal || !timeVal) {
+            datetimePreview.style.display = 'none';
+            return;
+        }
+
+        datetimePreview.style.display = 'block';
+
+        const dateObj = new Date(dateVal);
+        const options = { day: 'numeric', month: 'long', weekday: 'long' };
+        let formattedDate = dateObj.toLocaleDateString('ru-RU', options);
+        formattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+
+        // Normalize time (1:00 to 7:00 -> 13:00 to 19:00)
+        const [hoursStr, minutesStr] = timeVal.split(':');
+        let hours = parseInt(hoursStr, 10);
+        let wasNormalized = false;
+        if (hours >= 1 && hours <= 7) {
+            hours += 12;
+            wasNormalized = true;
+        }
+        const displayTime = `${String(hours).padStart(2, '0')}:${minutesStr}`;
+
+        let timePeriod = '';
+        if (hours >= 5 && hours < 12) {
+            timePeriod = 'утра';
+        } else if (hours >= 12 && hours < 17) {
+            timePeriod = 'дня';
+        } else if (hours >= 17 && hours < 23) {
+            timePeriod = 'вечера';
+        } else {
+            timePeriod = 'ночи';
+        }
+
+        let html = `Выбрано: <strong>${formattedDate}</strong> в <strong>${displayTime} (${timePeriod})</strong>`;
+        if (wasNormalized) {
+            html += `<br><span style="font-size: 11px; color: #ff4b72; font-weight: 500;">(время переведено в вечерний формат)</span>`;
+        }
+        datetimePreview.innerHTML = html;
+    }
+
+    // Update preview immediately and on change
+    updateDateTimePreview();
+    dateInput.addEventListener('change', updateDateTimePreview);
+    timeInput.addEventListener('input', updateDateTimePreview);
+    timeInput.addEventListener('change', updateDateTimePreview);
+
     btnSubmitDatetime.addEventListener('click', () => {
         if(dateInput.value && timeInput.value) {
             selectedDate = dateInput.value;
-            selectedTime = timeInput.value;
+            
+            // Normalize time
+            const timeVal = timeInput.value;
+            const [hoursStr, minutesStr] = timeVal.split(':');
+            let hours = parseInt(hoursStr, 10);
+            if (hours >= 1 && hours <= 7) {
+                hours += 12;
+            }
+            selectedTime = `${String(hours).padStart(2, '0')}:${minutesStr}`;
+            
             showScreen(screen4);
         } else {
             alert("Пожалуйста, выберите дату и время!");
